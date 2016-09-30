@@ -200,14 +200,12 @@ public class OAuth2Servlet extends HttpServlet {
 			Logger.warn(this, "No matching user, creating");
 		}
 		if (u == null) {
-			try {
-
-				String userId = UUIDGenerator.generateUuid();
+			try {				
 				String email = new String(json.getString("email").getBytes(), "UTF-8");
 				String lastName = new String(json.getString(lastNameProp).getBytes(), "UTF-8");
 				String firstName = new String(json.getString(firstNameProp).getBytes(), "UTF-8");
 
-				u = APILocator.getUserAPI().createUser(userId, email);
+				u = APILocator.getUserAPI().createUser(null, email);
 
 				u.setFirstName(firstName);
 				u.setLastName(lastName);
